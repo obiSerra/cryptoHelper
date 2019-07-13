@@ -18,11 +18,11 @@ async function currentBalance () {
     console.log("[!] current balance error")
     console.log(error)
     return false
-  }  
+  }
 }
 
 async function currentValue(pair = 'XXBTZEUR') {
-  try { 
+  try {
     const ticker = await kraken.api('Ticker', { pair })
     return +ticker.result[pair].c[0]
   } catch (error) {
@@ -33,9 +33,9 @@ async function currentValue(pair = 'XXBTZEUR') {
 }
 
 async function currentBtcInEur () {
-  const [cVal, cBal] =await Promise.all([currentValue(), currentBalance()])
+  const [cVal, cBal] = await Promise.all([currentValue(), currentBalance()])
   const cBtc = +cBal.XXBT
-  const cBtcEur = Math.floor(cBtc * cVal * 100) /100 
+  const cBtcEur = Math.floor(cBtc * cVal * 100) /100
 
   return cBtcEur
 }

@@ -1,15 +1,14 @@
 const crypto = require('./crypto')
 
-
-async function run() {
+async function getInfo() {
   try {
     const btcEur = await crypto.currentBtcInEur()
     const bList = await crypto.getBtcBought()
     const gL = crypto.currentGainLoss(btcEur, bList)
-    console.log(btcEur, gL)
+    return [btcEur, gL]
   } catch (error) {
     console.error(error)
-  } 
+  }
 }
 
-run()
+exports.getInfo = getInfo
