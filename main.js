@@ -1,14 +1,14 @@
-const crypto = require('./crypto')
+const crypto = require("./crypto");
 
 async function getInfo() {
   try {
-    const btcEur = await crypto.currentBtcInEur()
-    const bList = await crypto.getBtcBought()
-    const gL = crypto.currentGainLoss(btcEur, bList)
-    return [btcEur, gL]
+    const btcEur = await crypto.currentBtcInEur();
+    const bt = await crypto.balanceTarget();
+    const delta = Math.round((btcEur - bt) * 100) / 100;
+    return `Bilancio: ${btcEur} Delta: ${delta}`;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 }
 
-exports.getInfo = getInfo
+exports.getInfo = getInfo;

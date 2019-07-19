@@ -3,9 +3,9 @@ const { exec } = require("child_process");
 
 async function run() {
   try {
-    const s = await mainLib.getInfo();
+    const str = await mainLib.getInfo();
 
-    exec('termux-notification --sound --vibrate 500 --content "' + s + '"');
+    console.log(str);
   } catch (error) {
     console.error(error);
   }
